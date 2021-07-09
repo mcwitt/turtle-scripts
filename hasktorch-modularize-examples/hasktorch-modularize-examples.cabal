@@ -1,0 +1,39 @@
+cabal-version: 2.4
+name:          hasktorch-modularize-examples
+version:       0.1.0.0
+author:        Matt Wittmann
+maintainer:    mcwitt@gmail.com
+
+common common
+  default-language: Haskell2010
+  build-depends:
+    , base    ^>=4.14.1.0
+    , turtle
+
+library
+  import:          common
+  main-is:         Lib.hs
+  hs-source-dirs:  src
+  exposed-modules: Lib
+  build-depends:
+    , foldl
+    , raw-strings-qq
+    , text
+
+executable hasktorch-modularize-examples
+  import:         common
+  main-is:        Main.hs
+  hs-source-dirs: app
+  build-depends:  hasktorch-modularize-examples
+
+test-suite hasktorch-modularize-examples-tests
+  import:         common
+  type:           exitcode-stdio-1.0
+  main-is:        Test.hs
+  hs-source-dirs: test
+  build-depends:
+    , hasktorch-modularize-examples
+    , raw-strings-qq
+    , tasty
+    , tasty-hunit
+    , text
